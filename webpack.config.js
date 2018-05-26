@@ -115,10 +115,11 @@ if (isDev) {
   config.output.filename = '[name].[chunkhash:8].js'
   config.plugins.push(
     new ExtractTextplugin('styles.[contentHash:8].css'),
+    // 单独打包webpack的代码
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    // 单独打包webpack的代码
+    // 来将webpack的打包代码进行提取
     new Webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
     })
