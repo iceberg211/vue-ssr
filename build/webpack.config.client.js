@@ -103,7 +103,6 @@ if (isDev) {
     ])
   })
 }
-console.log(config)
 module.exports = config
 
 /**哈希(所有打包的代码的hash都一样)和ChunkHash的区别*/

@@ -4,7 +4,7 @@
     "description": "vue-ssr",
     "main": "index.js",
     "scripts": {
-        "build": "cross-env NODE_DEV=production webpack --config build/webpack.config.js",
+        "build": "cross-env NODE_DEV=production webpack --config build/webpack.config.client.js",
         "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js"
     },
     "keywords": [
