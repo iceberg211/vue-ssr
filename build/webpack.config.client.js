@@ -4,6 +4,8 @@ const Webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 // 将非js代码打包成一个单独文件,用于提取css
 const ExtractTextplugin = require('extract-text-webpack-plugin')
@@ -30,8 +32,15 @@ if (isDev) {
         {
           test: /\.styl/,
           use: [
-            'style-loader',
+            'vue-style-loader',
             'css-loader',
+            // {
+            //   loader: 'css-loader',
+            //   options: {
+            //     module: true,
+            //     localIdentName: isDev ? '[path]-[name]-[hash:base64:5]' : '[hash:base64:5]',
+            //   }
+            // },
             {
               loader: 'postcss-loader',
               options: {
@@ -63,7 +72,7 @@ if (isDev) {
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../src/index.js'),
+      app: path.join(__dirname, '../client/index.js'),
       // 分离类库代码
       vendor: ['vue'],
     },
@@ -75,9 +84,14 @@ if (isDev) {
         {
           test: /\.styl/,
           use: ExtractTextplugin.extract({
-            fallback: 'style-loader',
+            fallback: 'vue-style-loader',
             use: [
-              'css-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  minimize: true //css压缩
+                }
+              },
               {
                 loader: 'postcss-loader',
                 options: {
@@ -91,6 +105,7 @@ if (isDev) {
       ]
     },
     plugins: defaltPlugin.concat([
+      // new CleanWebpackPlugin(['dist']),
       new ExtractTextplugin('styles.[contentHash:8].css'),
       // 单独打包webpack的代码
       new Webpack.optimize.CommonsChunkPlugin({
@@ -99,7 +114,8 @@ if (isDev) {
       // 来将webpack的打包代码进行提取
       new Webpack.optimize.CommonsChunkPlugin({
         name: 'runtime'
-      })
+      }),
+      new UglifyJSPlugin()
     ])
   })
 }

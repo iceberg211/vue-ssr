@@ -31,18 +31,18 @@ export default {
   },
   data() {
     return {
-      state: ['all', 'active', 'completed']
-    }
+      state: ["all", "active", "completed"]
+    };
   },
   methods: {
     toggleFilter(state) {
-      this.$emit('toggle', state)
+      this.$emit("toggle", state);
     },
     clearAllCompleted() {
-      this.$emit('clearAll');
+      this.$emit("clearAll");
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

@@ -15,16 +15,16 @@ export default {
   props: {
     todo: {
       type: Object,
-      required: 'this is todo',
+      required: "this is todo",
       completed: true
     }
   },
   methods: {
     deleteTodo() {
-      this.$emit('del', this.todo.id)
+      this.$emit("del", this.todo.id);
     }
   }
-}
+};
 </script>
 
 

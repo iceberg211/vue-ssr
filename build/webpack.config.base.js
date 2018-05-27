@@ -1,12 +1,14 @@
 const path = require('path')
-// const Vueloader = require('vue-loader') 
+// const Vueloader = require('vue-loader')
+const createVueLoaderOptions = require('../build/vue-loader.config')
 
 
 // 将非js代码打包成一个单独文件,用于提取css
 const ExtractTextplugin = require('extract-text-webpack-plugin')
 
 // node process 变量
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development'
+console.log(createVueLoaderOptions,isDev)
 
 // path.join代表拼接当前文件目录
 const config = {
@@ -21,6 +23,7 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: createVueLoaderOptions(isDev)
       },
       {
         test: /\.jsx$/,
