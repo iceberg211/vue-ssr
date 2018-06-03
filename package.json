@@ -7,7 +7,10 @@
         "build:client": "cross-env NODE_DEV=production webpack --config build/webpack.config.client.js",
         "build": "npm run clean && npm run build:client",
         "clean": "rimraf dist",
-        "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js"
+        "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.client.js",
+        "lint": "eslint --ext .js --ext .jsx --ext .vue client/",
+        "lint-fix": "eslint --fix --ext .js --ext .jsx --ext .vue client/",
+        "practice": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.practice.js"
     },
     "keywords": [
         "vue-ssr",
@@ -32,6 +35,8 @@
         "clean-webpack-plugin": "^0.1.19",
         "cross-env": "^5.1.5",
         "css-loader": "^0.28.11",
+        "eslint": "^4.19.1",
+        "eslint-plugin-vue": "^4.5.0",
         "extract-text-webpack-plugin": "^3.0.2",
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.2.0",

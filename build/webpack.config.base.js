@@ -8,7 +8,6 @@ const ExtractTextplugin = require('extract-text-webpack-plugin')
 
 // node process 变量
 const isDev = process.env.NODE_ENV === 'development'
-console.log(createVueLoaderOptions,isDev)
 
 // path.join代表拼接当前文件目录
 const config = {
